@@ -1,0 +1,21 @@
+﻿using MachineTrace.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MachineTrace.Infrastructure.Extensions
+{
+    public static class ServiceCollectionExtension
+    {
+        public static void AddInfrastructure(this IServiceCollection serviceCollection, IConfiguration configuration)
+        {
+            serviceCollection.AddDbContext<MachineTraceDbContext>(options => options.UseSqlServer(
+                configuration.GetConnectionString("DefaultConnection")));
+        }
+    }
+}

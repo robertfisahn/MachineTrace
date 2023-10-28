@@ -4,6 +4,20 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>42a5f189-e225-46e4-8fdf-8900a88c16bf</UserSecretsId>
   </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MachineTrace.Application\MachineTrace.Application.csproj" />
+    <ProjectReference Include="..\MachineTrace.Infrastructure\MachineTrace.Infrastructure.csproj" />
+  </ItemGroup>
 
 </Project>
