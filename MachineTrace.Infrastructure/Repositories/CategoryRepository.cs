@@ -1,0 +1,28 @@
+﻿using MachineTrace.Domain.Intefaces;
+using MachineTrace.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+
+namespace MachineTrace.Infrastructure.Repositories
+{
+    internal class CategoryRepository : ICategoryRepository
+    {
+        private readonly MachineTraceDbContext _context;
+        public CategoryRepository(MachineTraceDbContext context)
+        {
+            _context = context;    
+        }
+        
+        public async Task Create(Domain.Entities.Category category)
+        {
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Domain.Entities.Category>> GetAll()
+            => await _context.Categories.ToListAsync();
+
+        public Task<Domain.Entities.Category?> GetByName(string name)
+            => _context.Categories.FirstOrDefaultAsync(c => c.Name.ToLower() == name.ToLower());
+        
+    }
+}

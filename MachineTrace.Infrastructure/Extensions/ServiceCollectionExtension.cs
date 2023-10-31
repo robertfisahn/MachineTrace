@@ -1,12 +1,9 @@
-﻿using MachineTrace.Infrastructure.Persistence;
+﻿using MachineTrace.Domain.Intefaces;
+using MachineTrace.Infrastructure.Persistence;
+using MachineTrace.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MachineTrace.Infrastructure.Extensions
 {
@@ -16,6 +13,8 @@ namespace MachineTrace.Infrastructure.Extensions
         {
             serviceCollection.AddDbContext<MachineTraceDbContext>(options => options.UseSqlServer(
                 configuration.GetConnectionString("DefaultConnection")));
+
+            serviceCollection.AddScoped<ICategoryRepository, CategoryRepository>();
         }
     }
 }
