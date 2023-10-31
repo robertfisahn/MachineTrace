@@ -1,20 +1,21 @@
-﻿using MachineTrace.Application.Dto.Category;
-using MachineTrace.Application.Services;
+﻿using MachineTrace.Application.Commands.Category.Create;
+using MachineTrace.Application.Queries.Category.GetAll;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MachineTrace.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryService _categoryService;
-        public CategoryController(ICategoryService categoryService)
+        private readonly IMediator _mediator;
+        public CategoryController(IMediator mediator)
         {
-            _categoryService = categoryService;
+            _mediator = mediator;
         }
 
         public async Task<IActionResult> Index()
         {
-            var categories = await _categoryService.GetAll();
+            var categories = await _mediator.Send(new GetAllQuery());
             return View(categories);
         }
 
@@ -23,14 +24,14 @@ namespace MachineTrace.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(CategoryDto category)
+        public async Task<IActionResult> Create(CreateCommand command)
         {
             if(!ModelState.IsValid)
             {
-                return View(category);
+                return View(command);
             }
-            await _categoryService.Create(category);
-            return RedirectToAction(nameof(Create));
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

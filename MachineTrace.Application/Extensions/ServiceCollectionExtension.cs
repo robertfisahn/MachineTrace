@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using MachineTrace.Application.Commands.Category.Create;
 using MachineTrace.Application.Mappings;
-using MachineTrace.Application.Services;
-using MachineTrace.Application.Validators;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace MachineTrace.Application.Extensions
 {
@@ -11,9 +11,9 @@ namespace MachineTrace.Application.Extensions
     {
         public static void AddApplication(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<ICategoryService, CategoryService>();
+            serviceCollection.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             serviceCollection.AddAutoMapper(typeof(MachineTraceMappingProfile));
-            serviceCollection.AddValidatorsFromAssemblyContaining<CategoryUpsertDtoValidator>()
+            serviceCollection.AddValidatorsFromAssemblyContaining<CreateCommandValidator>()
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
 
