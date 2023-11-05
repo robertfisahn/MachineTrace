@@ -19,14 +19,22 @@ namespace MachineTrace.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Domain.Entities.Category>> GetAll()
             => await _context.Categories.ToListAsync();
-
-        public Task<Domain.Entities.Category?> GetById(int id)
+        public Task<Domain.Entities.Category?> GetByIdAsync(int id)
             => _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
-        public Task<Domain.Entities.Category?> GetByName(string name)
+        public Task<Domain.Entities.Category?> GetByNameAsync(string name)
             => _context.Categories.FirstOrDefaultAsync(c => c.Name.ToLower() == name.ToLower());
         public async Task Save()
         {
             await _context.SaveChangesAsync();
+        }     
+        public async Task Delete(Category category)
+        {
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
         }
+        public Category? GetById(int id)
+            => _context.Categories.FirstOrDefault(c => c.Id == id);
+        public Category? GetByName(string name)
+            => _context.Categories.FirstOrDefault(c => c.Name.ToLower() == name.ToLower());
     }
 }

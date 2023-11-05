@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineTrace", "MachineTrace\MachineTrace.csproj", "{3FCD5E1F-52E3-421B-8185-1558B7FCDB86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineTrace", "MachineTrace\MachineTrace.csproj", "{3FCD5E1F-52E3-421B-8185-1558B7FCDB86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineTrace.Domain", "MachineTrace.Domain\MachineTrace.Domain.csproj", "{30E9F192-AB21-4662-A24A-955C189D5814}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineTrace.Domain", "MachineTrace.Domain\MachineTrace.Domain.csproj", "{30E9F192-AB21-4662-A24A-955C189D5814}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineTrace.Application", "MachineTrace.Application\MachineTrace.Application.csproj", "{3B05C157-5F57-40DC-A23C-02CA35F8E07E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineTrace.Application", "MachineTrace.Application\MachineTrace.Application.csproj", "{3B05C157-5F57-40DC-A23C-02CA35F8E07E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineTrace.Infrastructure", "MachineTrace.Infrastructure\MachineTrace.Infrastructure.csproj", "{B4307FBE-A088-48A3-8F6D-519003AE579B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineTrace.Infrastructure", "MachineTrace.Infrastructure\MachineTrace.Infrastructure.csproj", "{B4307FBE-A088-48A3-8F6D-519003AE579B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

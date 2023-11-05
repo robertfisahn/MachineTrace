@@ -6,7 +6,7 @@ using MediatR;
 
 namespace MachineTrace.Application.Queries.Category.GetById
 {
-    public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, EditCommand>
+    public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, CategoryDto>
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
@@ -17,11 +17,11 @@ namespace MachineTrace.Application.Queries.Category.GetById
             _mapper = mapper;
         }
 
-        public async Task<EditCommand> Handle(GetByIdQuery request, CancellationToken cancellationToken)
+        public async Task<CategoryDto> Handle(GetByIdQuery request, CancellationToken cancellationToken)
         {
-            var category = await _categoryRepository.GetById(request.Id);
-            var editCommand = _mapper.Map<EditCommand>(category);
-            return editCommand;
+            var category = await _categoryRepository.GetByIdAsync(request.Id);
+            var dto = _mapper.Map<CategoryDto>(category);
+            return dto;
         }
     }
 }

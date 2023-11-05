@@ -22,7 +22,7 @@ namespace MachineTrace.Application.Commands.Category.Edit
         }
         public async Task Handle(EditCommand request, CancellationToken cancellationToken)
         {
-            var category = await _categoryRepository.GetById(request.Id);
+            var category = await _categoryRepository.GetByIdAsync(request.Id);
             _mapper.Map(request, category);
             await _categoryRepository.Save();
         }

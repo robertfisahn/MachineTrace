@@ -1,5 +1,9 @@
-﻿using MachineTrace.Application.Commands.Category.Create;
+﻿using AutoMapper;
+using Humanizer;
+using MachineTrace.Application.Commands.Category.Create;
+using MachineTrace.Application.Commands.Category.Delete;
 using MachineTrace.Application.Commands.Category.Edit;
+using MachineTrace.Application.Dto.Category;
 using MachineTrace.Application.Queries.Category.GetAll;
 using MachineTrace.Application.Queries.Category.GetById;
 using MachineTrace.Application.Queries.Category.GetByName;
@@ -11,9 +15,11 @@ namespace MachineTrace.Controllers
     public class CategoryController : Controller
     {
         private readonly IMediator _mediator;
-        public CategoryController(IMediator mediator)
+        private readonly IMapper _mapper;
+        public CategoryController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -35,6 +41,7 @@ namespace MachineTrace.Controllers
                 return View(command);
             }
             await _mediator.Send(command);
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -42,17 +49,34 @@ namespace MachineTrace.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var dto = await _mediator.Send(new GetByIdQuery(id));
-            return View(dto);
+            var editCommand = _mapper.Map<EditCommand>(dto);
+            return View(editCommand);
         }
 
         [HttpPost]
         [Route("{id}/edit")]
-        public async Task<IActionResult> Edit(string id, EditCommand command)
+        public async Task<IActionResult> Edit(int id, EditCommand command)
         {
             if(!ModelState.IsValid)
             {
                 return View(command);
             }
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Route("{id}/delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var dto = await _mediator.Send(new GetByIdQuery(id));
+            var deleteCommand = _mapper.Map<DeleteCommand>(dto);
+            return View(deleteCommand);
+        }
+
+        [HttpPost]
+        [Route("{id}/delete")]
+        public async Task<IActionResult> Delete(int id, DeleteCommand command)
+        {
             await _mediator.Send(command);
             return RedirectToAction(nameof(Index));
         }

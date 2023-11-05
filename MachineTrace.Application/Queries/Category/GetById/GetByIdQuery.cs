@@ -1,10 +1,10 @@
-﻿using MachineTrace.Application.Commands.Category.Edit;
+﻿using MachineTrace.Application.Dto.Category;
 using MediatR;
 
 
 namespace MachineTrace.Application.Queries.Category.GetById
 {
-    public class GetByIdQuery : IRequest<EditCommand>
+    public class GetByIdQuery : IRequest<CategoryDto>
     {
         public int Id { get; set; }
 

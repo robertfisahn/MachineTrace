@@ -23,7 +23,7 @@ namespace MachineTrace.Application.Queries.Category.GetByName
         }
         public async Task<CategoryDto> Handle(GetByNameQuery request, CancellationToken cancellationToken)
         {
-            var category = await _categoryRepository.GetByName(request.Name);
+            var category = await _categoryRepository.GetByNameAsync(request.Name);
             var dto = _mapper.Map<CategoryDto>(category);
 
             return dto;

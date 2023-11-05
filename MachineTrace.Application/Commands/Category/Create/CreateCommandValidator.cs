@@ -12,7 +12,7 @@ public class CreateCommandValidator : AbstractValidator<CreateCommand>
             .MaximumLength(25).WithMessage("Name is too long. Maximum numbers of characters is 25.")
             .Custom((value, context) =>
             {
-                var existingName = repository.GetByName(value).Result;
+                var existingName = repository.GetByName(value);
                 if (existingName != null)
                 {
                     context.AddFailure($"{value} already exist");
