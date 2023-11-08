@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Humanizer;
 using MachineTrace.Application.Commands.Category.Create;
 using MachineTrace.Application.Commands.Category.Delete;
 using MachineTrace.Application.Commands.Category.Edit;
-using MachineTrace.Application.Dto.Category;
 using MachineTrace.Application.Queries.Category.GetAll;
 using MachineTrace.Application.Queries.Category.GetById;
 using MachineTrace.Application.Queries.Category.GetByName;
@@ -55,7 +53,7 @@ namespace MachineTrace.Controllers
 
         [HttpPost]
         [Route("{id}/edit")]
-        public async Task<IActionResult> Edit(int id, EditCommand command)
+        public async Task<IActionResult> Edit(EditCommand command)
         {
             if(!ModelState.IsValid)
             {

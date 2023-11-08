@@ -1,5 +1,4 @@
-﻿using MachineTrace.Domain.Entities;
-using MachineTrace.Domain.Intefaces;
+﻿using MachineTrace.Domain.Intefaces;
 using MachineTrace.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,14 +26,14 @@ namespace MachineTrace.Infrastructure.Repositories
         {
             await _context.SaveChangesAsync();
         }     
-        public async Task Delete(Category category)
+        public async Task Delete(Domain.Entities.Category category)
         {
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
         }
-        public Category? GetById(int id)
+        public Domain.Entities.Category? GetById(int id)
             => _context.Categories.FirstOrDefault(c => c.Id == id);
-        public Category? GetByName(string name)
+        public Domain.Entities.Category? GetByName(string name)
             => _context.Categories.FirstOrDefault(c => c.Name.ToLower() == name.ToLower());
     }
 }

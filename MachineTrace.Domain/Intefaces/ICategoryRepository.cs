@@ -1,6 +1,4 @@
-﻿using MachineTrace.Domain.Entities;
-
-namespace MachineTrace.Domain.Intefaces
+﻿namespace MachineTrace.Domain.Intefaces
 {
     public interface ICategoryRepository
     {
@@ -8,9 +6,9 @@ namespace MachineTrace.Domain.Intefaces
         Task Create(Domain.Entities.Category category);
         Task<Domain.Entities.Category?> GetByNameAsync(string name);
         Task<Domain.Entities.Category?> GetByIdAsync(int id);
-        Category? GetById(int id);
-        Category? GetByName(string name);
+        Domain.Entities.Category? GetById(int id);
+        Domain.Entities.Category? GetByName(string name);
         Task Save();
-        Task Delete(Category category);
+        Task Delete(Domain.Entities.Category category);
     }
 }

@@ -15,6 +15,7 @@ namespace MachineTrace.Infrastructure.Extensions
                 configuration.GetConnectionString("DefaultConnection")));
 
             serviceCollection.AddScoped<ICategoryRepository, CategoryRepository>();
+            serviceCollection.AddScoped<IMachineRepository, MachineRepository>();
         }
     }
 }

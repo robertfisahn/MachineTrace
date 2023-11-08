@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MachineTrace.Domain.Enums;
 
 namespace MachineTrace.Domain.Entities
 {
@@ -14,17 +10,7 @@ namespace MachineTrace.Domain.Entities
         public int Mth { get; set; }
         public int ServiceInterval { get; set; }
         public int TimeToService => ServiceInterval - (Mth % ServiceInterval);
-        public enum MachineCondition
-        {
-            Efficient,
-            Damaged
-        }
         public MachineCondition Condition { get; set; }
-        public enum MachineStatus
-        {
-            Waiting,
-            Working
-        }
         public MachineStatus Status { get; set; }
         public string? ImagePath { get; set; }
         public int CategoryId { get; set; }
