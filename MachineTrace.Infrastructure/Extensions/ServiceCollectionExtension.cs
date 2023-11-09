@@ -16,6 +16,7 @@ namespace MachineTrace.Infrastructure.Extensions
 
             serviceCollection.AddScoped<ICategoryRepository, CategoryRepository>();
             serviceCollection.AddScoped<IMachineRepository, MachineRepository>();
+            serviceCollection.AddScoped<IFailureRepository, FailureRepository>();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using MachineTrace.Application.Dto.Category;
-using MachineTrace.Application.Dto.Machine;
-using MachineTrace.Domain.Enums;
+﻿using MachineTrace.Application.Dto.Machine;
 using MediatR;
 
 namespace MachineTrace.Application.Queries.Machine.EditForm

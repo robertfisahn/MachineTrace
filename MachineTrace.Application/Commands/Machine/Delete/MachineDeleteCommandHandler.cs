@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using MachineTrace.Application.Dto.Machine;
-using MachineTrace.Domain.Intefaces;
+﻿using MachineTrace.Domain.Intefaces;
 using MediatR;
 
 namespace MachineTrace.Application.Commands.Machine.Delete
