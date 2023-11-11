@@ -20,8 +20,6 @@ namespace MachineTrace.Infrastructure.Repositories
             => await _context.Categories.ToListAsync();
         public Task<Domain.Entities.Category?> GetByIdAsync(int id)
             => _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
-        public Task<Domain.Entities.Category?> GetByNameAsync(string name)
-            => _context.Categories.FirstOrDefaultAsync(c => c.Name.ToLower() == name.ToLower());
         public async Task Save()
         {
             await _context.SaveChangesAsync();

@@ -18,7 +18,7 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group ">
                 <input type="submit" value="Save" class="btn btn-primary" />
-                <a class="btn btn-outline-warning" asp-action="Index">Back to List</a>
+                <a class="btn btn-outline-warning" asp-controller="Category" asp-action="Details" asp-route-Id="@Model.Id">Back to details</a>
             </div>
         </form>
     </div>

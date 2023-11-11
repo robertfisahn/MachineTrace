@@ -4,7 +4,6 @@
     {
         Task<IEnumerable<Domain.Entities.Category>> GetAll();
         Task Create(Domain.Entities.Category category);
-        Task<Domain.Entities.Category?> GetByNameAsync(string name);
         Task<Domain.Entities.Category?> GetByIdAsync(int id);
         Domain.Entities.Category? GetById(int id);
         Domain.Entities.Category? GetByName(string name);

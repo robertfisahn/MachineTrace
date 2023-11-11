@@ -1,9 +1,4 @@
 ﻿using MachineTrace.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MachineTrace.Application.Dto.Failure
 {
@@ -15,5 +10,7 @@ namespace MachineTrace.Application.Dto.Failure
         public FailurePriority Priority { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
         public string MachineCode { get; set; } = default!;
+        public int? MachineId { get; set; }
+        public int? FromMachine { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace MachineTrace.Application.Dto.Failure
         public int Mth { get; set; }
         public FailurePriority Priority { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+        public int? MachineId { get; set; }
         public string MachineCode { get; set; } = default!;
     }
 }

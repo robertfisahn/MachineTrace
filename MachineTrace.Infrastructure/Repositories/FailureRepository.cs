@@ -26,6 +26,9 @@ namespace MachineTrace.Infrastructure.Repositories
         public async Task<Failure> GetById(int id)
             => await _context.Failures.Include(f => f.Machine).SingleOrDefaultAsync(f => f.Id == id);
 
+        public async Task<IEnumerable<Failure>> GetByMachine(int id)
+            => await _context.Failures.Include(f => f.Machine).Where(c => c.MachineId == id).ToListAsync();
+
         public async Task DeleteById(int id)
         {
             var failure = new Failure { Id = id };

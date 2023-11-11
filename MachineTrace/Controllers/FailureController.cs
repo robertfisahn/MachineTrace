@@ -6,6 +6,7 @@ using MachineTrace.Application.Queries.Failure.CreateForm;
 using MachineTrace.Application.Queries.Failure.EditForm;
 using MachineTrace.Application.Queries.Failure.GetAll;
 using MachineTrace.Application.Queries.Failure.GetById;
+using MachineTrace.Application.Queries.Failure.GetByMachine;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,14 +29,22 @@ namespace MachineTrace.Controllers
             return View(failures);
         }
 
-        public async Task<IActionResult> Create()
+        [Route("machine/{machineId}/failures")]
+        public async Task<IActionResult> GetByMachine(int machineId)
         {
-            var failure = await _mediator.Send(new FailureCreateFormQuery());
+            var failures = await _mediator.Send(new GetByMachineQuery(machineId));
+            return View(failures);
+        }
+        [Route("machine/{machineId}/failure")]
+        public async Task<IActionResult> Create(int machineId)
+        {
+            var failure = await _mediator.Send(new FailureCreateFormQuery(machineId));
             var createCommand = _mapper.Map<FailureCreateCommand>(failure);
             return View(createCommand);
         }
 
         [HttpPost]
+        [Route("machine/{machineId}/failure")]
         public async Task<IActionResult> Create(FailureCreateCommand command)
         {
             if(!ModelState.IsValid)
@@ -43,13 +52,14 @@ namespace MachineTrace.Controllers
                 return View(command);
             }
             await _mediator.Send(command);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Machine", new { id = command.MachineId });
         }
 
-        [Route("failure/{id}/details")]
-        public async Task<IActionResult> Details(int id)
+        [Route("failures/{id}/details")]
+        [Route("machine/{machineId}/failures/{id}/details")]
+        public async Task<IActionResult> Details(int id, int? machineId)
         {
-            var failure = await _mediator.Send(new GetByIdQuery(id));
+            var failure = await _mediator.Send(new GetByIdQuery(id, machineId));
             return View(failure);
         }
         [Route("failure/{id}/edit")]

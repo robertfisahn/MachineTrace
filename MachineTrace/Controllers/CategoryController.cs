@@ -4,7 +4,6 @@ using MachineTrace.Application.Commands.Category.Delete;
 using MachineTrace.Application.Commands.Category.Edit;
 using MachineTrace.Application.Queries.Category.GetAll;
 using MachineTrace.Application.Queries.Category.GetById;
-using MachineTrace.Application.Queries.Category.GetByName;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -79,10 +78,10 @@ namespace MachineTrace.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Route("{name}/details")]
-        public async Task<IActionResult> Details(string name)
+        [Route("{id}/details")]
+        public async Task<IActionResult> Details(int id)
         {
-            var dto = await _mediator.Send(new GetByNameQuery(name));
+            var dto = await _mediator.Send(new GetByIdQuery(id));
             return View(dto);
         }
     }

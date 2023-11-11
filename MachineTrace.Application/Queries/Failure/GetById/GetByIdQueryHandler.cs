@@ -2,11 +2,6 @@
 using MachineTrace.Application.Dto.Failure;
 using MachineTrace.Infrastructure.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MachineTrace.Application.Queries.Failure.GetById
 {
@@ -24,6 +19,10 @@ namespace MachineTrace.Application.Queries.Failure.GetById
         {
             var failure = await _failureRepository.GetById(request.Id);
             var dto = _mapper.Map<FailureDtoDetails>(failure);
+            if(request.FromMachine != null)
+            {
+                dto.FromMachine = request.FromMachine;
+            }
             return dto;
         }
     }
