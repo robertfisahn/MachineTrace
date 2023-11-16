@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using MachineTrace.Application.Commands.Category.Delete;
+using MachineTrace.Application.Commands.DailyReport.Create;
+using MachineTrace.Application.Commands.DailyReport.Delete;
+using MachineTrace.Application.Commands.DailyReport.Edit;
 using MachineTrace.Application.Commands.Failure.Create;
 using MachineTrace.Application.Commands.Failure.Delete;
 using MachineTrace.Application.Commands.Failure.Edit;
@@ -7,6 +10,7 @@ using MachineTrace.Application.Commands.Machine.Create;
 using MachineTrace.Application.Commands.Machine.Delete;
 using MachineTrace.Application.Commands.Machine.Edit;
 using MachineTrace.Application.Dto.Category;
+using MachineTrace.Application.Dto.DailyReport;
 using MachineTrace.Application.Dto.Failure;
 using MachineTrace.Application.Dto.Machine;
 
@@ -46,6 +50,17 @@ namespace MachineTrace.Application.Mappings
             CreateMap<Domain.Entities.Failure, FailureDtoEdit>();
             CreateMap<FailureDtoEdit, FailureEditCommand>();
             CreateMap<FailureDtoDetails, FailureDeleteCommand>();
+
+            CreateMap<Domain.Entities.DailyReport, DailyReportDto>()
+                .ForMember(dest => dest.MachineCode, opt => opt.MapFrom(src => src.Machine.Code));
+            CreateMap<DailyReportDtoCreate, DailyReportCreateCommand>();
+            CreateMap<DailyReportCreateCommand, Domain.Entities.DailyReport>();
+            CreateMap<Domain.Entities.DailyReport, DailyReportDtoDetails>()
+                .ForMember(dest => dest.MachineCode, opt => opt.MapFrom(src => src.Machine.Code));
+            CreateMap<DailyReportDtoDetails, DailyReportDeleteCommand>();
+            CreateMap<Domain.Entities.DailyReport, DailyReportDtoEdit>();
+            CreateMap<DailyReportDtoEdit, DailyReportEditCommand>();
+            CreateMap<DailyReportEditCommand, Domain.Entities.DailyReport>();
         }
     }
 }

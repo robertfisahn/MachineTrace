@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MachineTrace.Application.Dto.DailyReport.DailyReportDtoDetails>
+
+@{
+    ViewData["Title"] = "ByMachine";
+}
+
+<h1>ByMachine</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Mth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="Details" asp-controller="DailyReport" asp-route-id="@item.Id" asp-route-machineId="@item.MachineId">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a class="btn btn-primary" asp-action="Details" asp-controller="Machine" asp-route-id="@Model.First().MachineId">Back to machine</a>
+</div>

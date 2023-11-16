@@ -1,14 +1,13 @@
 ﻿using MachineTrace.Domain.Enums;
 
-namespace MachineTrace.Domain.Entities
+namespace MachineTrace.Application.Dto.DailyReport
 {
-    public class DailyReport
+    public class DailyReportDtoCreate
     {
-        public int Id { get; set; }
         public int Mth { get; set; }
         public MaintenanceStatus Status { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
         public int MachineId { get; set; }
-        public virtual Machine Machine { get; set; } = default!;
+        public IEnumerable<string>? MaintenanceStatuses { get; set; }
     }
 }
